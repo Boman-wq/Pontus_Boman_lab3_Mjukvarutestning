@@ -1,0 +1,39 @@
+using NLog;
+
+
+class Program
+{
+    // below is how to get the logger which can be done from any class after ConfigureNLog() is run once
+    private static Logger logger = LogManager.GetCurrentClassLogger();
+
+    static void Main(string[] args)
+    {
+        if (args.Length < 1 || string.IsNullOrEmpty(args[0]))
+        {
+            Console.WriteLine("You must specify the base directory for storing the logfile");
+            Console.WriteLine("\nPress any key to exit.");
+            Console.ReadKey();
+	    Environment.Exit(-1);
+        }
+
+        logger.Info($"This is how you use NLog to log to screen and a file: {ConfigureNLog(args[0])}\n");
+
+
+
+    }
+
+    /// <summary>
+    /// Init and configure NLog with a log file with appName.log in logFolderPath
+    /// </summary>
+    /// <param name="logFolderPath"></param>
+    /// <returns></returns>
+    public static string ConfigureNLog(string logFolderPath)
+    {
+        string targetDir = Path.Combine(logFolderPath, DateTime.Now.ToString("yyyyMMdd_HHmmss"));
+        Directory.CreateDirectory(targetDir);
+        // https://stackoverflow.com/questions/616584/how-do-i-get-the-name-of-the-current-executable-in-c
+        string appName = System.AppDomain.CurrentDomain.FriendlyName;
+        string nLogFile = Path.Combine(targetDir, appName /*.Substring(0, appName.IndexOf("."))*/ + ".log");
+        NLogConfiguration.Configure(nLogFile);
+        return nLogFile;
+    }

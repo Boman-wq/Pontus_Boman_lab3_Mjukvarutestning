@@ -1,0 +1,41 @@
+/*
+ConfigurationManager.AppSettings is available in .NET Core
+Install System.Configuration.ConfigurationManager from Nuget into your application
+https://stackoverflow.com/questions/47591910/is-configurationmanager-appsettings-available-in-net-core-2-0
+*/
+
+using System.Configuration;
+
+
+
+/// <summary>
+/// Get AppSettingValue from App.config
+/// </summary>
+/// <param name="appSettingKey"></param>
+/// <returns></returns>
+public static string GetAppSettingValue(string appSettingKey)
+{
+    string value = ConfigurationManager.AppSettings[appSettingKey];
+    if (string.IsNullOrEmpty(value))
+    {
+        string message = $"Can not find value for appSetting key: '{appSettingKey}'.";
+        throw new ConfigurationErrorsException(message);
+    }
+    return value;
+}
+
+/// <summary>
+/// Get ConnectionStringValue from App.config
+/// </summary>
+/// <param name="connectionStringKey"></param>
+/// <returns></returns>
+public static string GetConnectionStringValue(string connectionStringKey)
+{
+    string value = ConfigurationManager.ConnectionStrings[connectionStringKey].ToString();
+    if (string.IsNullOrEmpty(value))
+    {
+        string message = $"Can not find value for connectionString key: '{connectionStringKey}'.";
+        throw new ConfigurationErrorsException(message);
+    }
+    return value;
+}

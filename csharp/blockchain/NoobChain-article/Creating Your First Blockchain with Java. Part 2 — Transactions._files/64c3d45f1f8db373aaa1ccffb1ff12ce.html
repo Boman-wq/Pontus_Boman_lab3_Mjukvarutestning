@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<!-- saved from url=(0077)https://medium.com/media/64c3d45f1f8db373aaa1ccffb1ff12ce?postId=2cdac335e0ce -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Wallet.Java – Medium</title><meta name="twitter:widgets:csp" content="on"><meta name="robots" content="noindex"><!--<base target="_blank">--><base href="." target="_blank"><style>body {text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: "ff-tisa-web-pro", Georgia, Cambria, "Times New Roman", Times, serif; font-weight: 400; color: #333332; font-size: 18px; line-height: 1.4; margin: 0; background-color: white; overflow: hidden;}iframe {max-width: 100%;}</style></head><body><style>.gist .gist-file { margin-bottom: 0 !important; }.gist { text-rendering: auto; }</style><script src="./5e1a8a5ad59b88ef0e9f1c12d339ce42.js.download" charset="utf-8"></script><link rel="stylesheet" href="./gist-embed-a9a1cf2ca01efd362bfa52312712ae94.css"><div id="gist85714845" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-wallet-java" class="file">
+    
+
+  <div itemprop="text" class="Box-body px-0 blob-wrapper data type-java ">
+      
+<table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-wallet-java-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-wallet-java-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-smi">java.security.*</span>;</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-wallet-java-LC2" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-smi">java.security.spec.ECGenParameterSpec</span>;</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-wallet-java-LC3" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-smi">java.util.ArrayList</span>;</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-wallet-java-LC4" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-smi">java.util.HashMap</span>;</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-wallet-java-LC5" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-smi">java.util.Map</span>;</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-wallet-java-LC6" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-wallet-java-LC7" class="blob-code blob-code-inner js-file-line"><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">Wallet</span> {</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-wallet-java-LC8" class="blob-code blob-code-inner js-file-line">	</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-wallet-java-LC9" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">public</span> <span class="pl-smi">PrivateKey</span> privateKey;</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-wallet-java-LC10" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">public</span> <span class="pl-smi">PublicKey</span> publicKey;</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-wallet-java-LC11" class="blob-code blob-code-inner js-file-line">	</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-wallet-java-LC12" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">public</span> <span class="pl-k">HashMap&lt;<span class="pl-smi">String</span>,<span class="pl-smi">TransactionOutput</span>&gt;</span> UTXOs <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-k">HashMap&lt;<span class="pl-smi">String</span>,<span class="pl-smi">TransactionOutput</span>&gt;</span>(); <span class="pl-c"><span class="pl-c">//</span>only UTXOs owned by this wallet.</span></td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="file-wallet-java-LC13" class="blob-code blob-code-inner js-file-line">	</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L14" class="blob-num js-line-number" data-line-number="14"></td>
+        <td id="file-wallet-java-LC14" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">public</span> <span class="pl-en">Wallet</span>() {<span class="pl-c1">...</span></td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L15" class="blob-num js-line-number" data-line-number="15"></td>
+        <td id="file-wallet-java-LC15" class="blob-code blob-code-inner js-file-line">		</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L16" class="blob-num js-line-number" data-line-number="16"></td>
+        <td id="file-wallet-java-LC16" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">public</span> <span class="pl-k">void</span> generateKeyPair() {<span class="pl-c1">...</span></td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L17" class="blob-num js-line-number" data-line-number="17"></td>
+        <td id="file-wallet-java-LC17" class="blob-code blob-code-inner js-file-line">	</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L18" class="blob-num js-line-number" data-line-number="18"></td>
+        <td id="file-wallet-java-LC18" class="blob-code blob-code-inner js-file-line">  <span class="pl-c"><span class="pl-c">//</span>returns balance and stores the UTXO's owned by this wallet in this.UTXOs</span></td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L19" class="blob-num js-line-number" data-line-number="19"></td>
+        <td id="file-wallet-java-LC19" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">public</span> <span class="pl-k">float</span> getBalance() {</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L20" class="blob-num js-line-number" data-line-number="20"></td>
+        <td id="file-wallet-java-LC20" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">float</span> total <span class="pl-k">=</span> <span class="pl-c1">0</span>;	</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L21" class="blob-num js-line-number" data-line-number="21"></td>
+        <td id="file-wallet-java-LC21" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">for</span> (<span class="pl-smi">Map</span><span class="pl-k">.</span><span class="pl-k">Entry&lt;<span class="pl-smi">String</span>, <span class="pl-smi">TransactionOutput</span>&gt;</span> item<span class="pl-k">:</span> <span class="pl-smi">NoobChain</span><span class="pl-k">.</span><span class="pl-smi">UTXOs</span><span class="pl-k">.</span>entrySet()){</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L22" class="blob-num js-line-number" data-line-number="22"></td>
+        <td id="file-wallet-java-LC22" class="blob-code blob-code-inner js-file-line">        	<span class="pl-smi">TransactionOutput</span> <span class="pl-c1">UTXO</span> <span class="pl-k">=</span> item<span class="pl-k">.</span>getValue();</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L23" class="blob-num js-line-number" data-line-number="23"></td>
+        <td id="file-wallet-java-LC23" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">if</span>(<span class="pl-c1">UTXO</span><span class="pl-k">.</span>isMine(publicKey)) { <span class="pl-c"><span class="pl-c">//</span>if output belongs to me ( if coins belong to me )</span></td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L24" class="blob-num js-line-number" data-line-number="24"></td>
+        <td id="file-wallet-java-LC24" class="blob-code blob-code-inner js-file-line">            	<span class="pl-smi">UTXOs</span><span class="pl-k">.</span>put(<span class="pl-c1">UTXO</span><span class="pl-k">.</span>id,<span class="pl-c1">UTXO</span>); <span class="pl-c"><span class="pl-c">//</span>add it to our list of unspent transactions.</span></td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L25" class="blob-num js-line-number" data-line-number="25"></td>
+        <td id="file-wallet-java-LC25" class="blob-code blob-code-inner js-file-line">            	total <span class="pl-k">+=</span> <span class="pl-c1">UTXO</span><span class="pl-k">.</span>value ; </td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L26" class="blob-num js-line-number" data-line-number="26"></td>
+        <td id="file-wallet-java-LC26" class="blob-code blob-code-inner js-file-line">            }</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L27" class="blob-num js-line-number" data-line-number="27"></td>
+        <td id="file-wallet-java-LC27" class="blob-code blob-code-inner js-file-line">        }  </td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L28" class="blob-num js-line-number" data-line-number="28"></td>
+        <td id="file-wallet-java-LC28" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">return</span> total;</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L29" class="blob-num js-line-number" data-line-number="29"></td>
+        <td id="file-wallet-java-LC29" class="blob-code blob-code-inner js-file-line">	}</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L30" class="blob-num js-line-number" data-line-number="30"></td>
+        <td id="file-wallet-java-LC30" class="blob-code blob-code-inner js-file-line">	<span class="pl-c"><span class="pl-c">//</span>Generates and returns a new transaction from this wallet.</span></td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L31" class="blob-num js-line-number" data-line-number="31"></td>
+        <td id="file-wallet-java-LC31" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">public</span> <span class="pl-smi">Transaction</span> sendFunds(<span class="pl-smi">PublicKey</span> _recipient,<span class="pl-k">float</span> value ) {</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L32" class="blob-num js-line-number" data-line-number="32"></td>
+        <td id="file-wallet-java-LC32" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">if</span>(getBalance() <span class="pl-k">&lt;</span> value) { <span class="pl-c"><span class="pl-c">//</span>gather balance and check funds.</span></td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L33" class="blob-num js-line-number" data-line-number="33"></td>
+        <td id="file-wallet-java-LC33" class="blob-code blob-code-inner js-file-line">			<span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(<span class="pl-s"><span class="pl-pds">"</span>#Not Enough funds to send transaction. Transaction Discarded.<span class="pl-pds">"</span></span>);</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L34" class="blob-num js-line-number" data-line-number="34"></td>
+        <td id="file-wallet-java-LC34" class="blob-code blob-code-inner js-file-line">			<span class="pl-k">return</span> <span class="pl-c1">null</span>;</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L35" class="blob-num js-line-number" data-line-number="35"></td>
+        <td id="file-wallet-java-LC35" class="blob-code blob-code-inner js-file-line">		}</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L36" class="blob-num js-line-number" data-line-number="36"></td>
+        <td id="file-wallet-java-LC36" class="blob-code blob-code-inner js-file-line">    <span class="pl-c"><span class="pl-c">//</span>create array list of inputs</span></td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L37" class="blob-num js-line-number" data-line-number="37"></td>
+        <td id="file-wallet-java-LC37" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">ArrayList&lt;<span class="pl-smi">TransactionInput</span>&gt;</span> inputs <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-k">ArrayList&lt;<span class="pl-smi">TransactionInput</span>&gt;</span>();</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L38" class="blob-num js-line-number" data-line-number="38"></td>
+        <td id="file-wallet-java-LC38" class="blob-code blob-code-inner js-file-line">    </td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L39" class="blob-num js-line-number" data-line-number="39"></td>
+        <td id="file-wallet-java-LC39" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">float</span> total <span class="pl-k">=</span> <span class="pl-c1">0</span>;</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L40" class="blob-num js-line-number" data-line-number="40"></td>
+        <td id="file-wallet-java-LC40" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">for</span> (<span class="pl-smi">Map</span><span class="pl-k">.</span><span class="pl-k">Entry&lt;<span class="pl-smi">String</span>, <span class="pl-smi">TransactionOutput</span>&gt;</span> item<span class="pl-k">:</span> <span class="pl-smi">UTXOs</span><span class="pl-k">.</span>entrySet()){</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L41" class="blob-num js-line-number" data-line-number="41"></td>
+        <td id="file-wallet-java-LC41" class="blob-code blob-code-inner js-file-line">			<span class="pl-smi">TransactionOutput</span> <span class="pl-c1">UTXO</span> <span class="pl-k">=</span> item<span class="pl-k">.</span>getValue();</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L42" class="blob-num js-line-number" data-line-number="42"></td>
+        <td id="file-wallet-java-LC42" class="blob-code blob-code-inner js-file-line">			total <span class="pl-k">+=</span> <span class="pl-c1">UTXO</span><span class="pl-k">.</span>value;</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L43" class="blob-num js-line-number" data-line-number="43"></td>
+        <td id="file-wallet-java-LC43" class="blob-code blob-code-inner js-file-line">			inputs<span class="pl-k">.</span>add(<span class="pl-k">new</span> <span class="pl-smi">TransactionInput</span>(<span class="pl-c1">UTXO</span><span class="pl-k">.</span>id));</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L44" class="blob-num js-line-number" data-line-number="44"></td>
+        <td id="file-wallet-java-LC44" class="blob-code blob-code-inner js-file-line">			<span class="pl-k">if</span>(total <span class="pl-k">&gt;</span> value) <span class="pl-k">break</span>;</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L45" class="blob-num js-line-number" data-line-number="45"></td>
+        <td id="file-wallet-java-LC45" class="blob-code blob-code-inner js-file-line">		}</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L46" class="blob-num js-line-number" data-line-number="46"></td>
+        <td id="file-wallet-java-LC46" class="blob-code blob-code-inner js-file-line">		</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L47" class="blob-num js-line-number" data-line-number="47"></td>
+        <td id="file-wallet-java-LC47" class="blob-code blob-code-inner js-file-line">		<span class="pl-smi">Transaction</span> newTransaction <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">Transaction</span>(publicKey, _recipient , value, inputs);</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L48" class="blob-num js-line-number" data-line-number="48"></td>
+        <td id="file-wallet-java-LC48" class="blob-code blob-code-inner js-file-line">		newTransaction<span class="pl-k">.</span>generateSignature(privateKey);</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L49" class="blob-num js-line-number" data-line-number="49"></td>
+        <td id="file-wallet-java-LC49" class="blob-code blob-code-inner js-file-line">		</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L50" class="blob-num js-line-number" data-line-number="50"></td>
+        <td id="file-wallet-java-LC50" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">for</span>(<span class="pl-smi">TransactionInput</span> input<span class="pl-k">:</span> inputs){</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L51" class="blob-num js-line-number" data-line-number="51"></td>
+        <td id="file-wallet-java-LC51" class="blob-code blob-code-inner js-file-line">			<span class="pl-smi">UTXOs</span><span class="pl-k">.</span>remove(input<span class="pl-k">.</span>transactionOutputId);</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L52" class="blob-num js-line-number" data-line-number="52"></td>
+        <td id="file-wallet-java-LC52" class="blob-code blob-code-inner js-file-line">		}</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L53" class="blob-num js-line-number" data-line-number="53"></td>
+        <td id="file-wallet-java-LC53" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">return</span> newTransaction;</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L54" class="blob-num js-line-number" data-line-number="54"></td>
+        <td id="file-wallet-java-LC54" class="blob-code blob-code-inner js-file-line">	}</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L55" class="blob-num js-line-number" data-line-number="55"></td>
+        <td id="file-wallet-java-LC55" class="blob-code blob-code-inner js-file-line">	</td>
+      </tr>
+      <tr>
+        <td id="file-wallet-java-L56" class="blob-num js-line-number" data-line-number="56"></td>
+        <td id="file-wallet-java-LC56" class="blob-code blob-code-inner js-file-line">}</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/CryptoKass/5e1a8a5ad59b88ef0e9f1c12d339ce42/raw/3ed5492288fc6591c4406e924ff49ac194b0bd0f/Wallet.Java" style="float:right">view raw</a>
+        <a href="https://gist.github.com/CryptoKass/5e1a8a5ad59b88ef0e9f1c12d339ce42#file-wallet-java">Wallet.Java</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<script>var height = -1; var delayMs = 200;function notifyResize(height) {height = height ? height : document.documentElement.offsetHeight; var resized = false; if (window.donkey && donkey.resize) {donkey.resize(height); resized = true;}if (parent && parent._resizeIframe) {var obj = {iframe: window.frameElement, height: height}; parent._resizeIframe(obj); resized = true;}if (window.location && window.location.hash === "#amp=1" && window.parent && window.parent.postMessage) {window.parent.postMessage({sentinel: "amp", type: "embed-size", height: height}, "*");}if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.resize) {window.webkit.messageHandlers.resize.postMessage(height); resized = true;}return resized;}function maybeResize() {if (document.documentElement.offsetHeight != height && notifyResize()) {height = document.documentElement.offsetHeight;}delayMs = Math.min(delayMs * 2, 1000000); setTimeout(maybeResize, delayMs);}maybeResize();</script></body></html>

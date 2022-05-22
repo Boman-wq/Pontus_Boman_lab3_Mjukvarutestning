@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<!-- saved from url=(0077)https://medium.com/media/9d763a0f6d64ac19c951d29e4cedfcfb?postId=2cdac335e0ce -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>StringUtil.Java – Medium</title><meta name="twitter:widgets:csp" content="on"><meta name="robots" content="noindex"><!--<base target="_blank">--><base href="." target="_blank"><style>body {text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: "ff-tisa-web-pro", Georgia, Cambria, "Times New Roman", Times, serif; font-weight: 400; color: #333332; font-size: 18px; line-height: 1.4; margin: 0; background-color: white; overflow: hidden;}iframe {max-width: 100%;}</style></head><body><style>.gist .gist-file { margin-bottom: 0 !important; }.gist { text-rendering: auto; }</style><script src="./97abbf99e5a98000c20d90c6e0c56111.js.download" charset="utf-8"></script><link rel="stylesheet" href="./gist-embed-a9a1cf2ca01efd362bfa52312712ae94.css"><div id="gist85367370" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-stringutil-java" class="file">
+    
+
+  <div itemprop="text" class="Box-body px-0 blob-wrapper data type-java ">
+      
+<table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-stringutil-java-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-stringutil-java-LC1" class="blob-code blob-code-inner js-file-line">	</td>
+      </tr>
+      <tr>
+        <td id="file-stringutil-java-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-stringutil-java-LC2" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span>Applies ECDSA Signature and returns the result ( as bytes ).</span></td>
+      </tr>
+      <tr>
+        <td id="file-stringutil-java-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-stringutil-java-LC3" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">byte</span>[] applyECDSASig(<span class="pl-smi">PrivateKey</span> privateKey, <span class="pl-smi">String</span> input) {</td>
+      </tr>
+      <tr>
+        <td id="file-stringutil-java-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-stringutil-java-LC4" class="blob-code blob-code-inner js-file-line">		<span class="pl-smi">Signature</span> dsa;</td>
+      </tr>
+      <tr>
+        <td id="file-stringutil-java-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-stringutil-java-LC5" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">byte</span>[] output <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">byte</span>[<span class="pl-c1">0</span>];</td>
+      </tr>
+      <tr>
+        <td id="file-stringutil-java-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-stringutil-java-LC6" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">try</span> {</td>
+      </tr>
+      <tr>
+        <td id="file-stringutil-java-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-stringutil-java-LC7" class="blob-code blob-code-inner js-file-line">			dsa <span class="pl-k">=</span> <span class="pl-smi">Signature</span><span class="pl-k">.</span>getInstance(<span class="pl-s"><span class="pl-pds">"</span>ECDSA<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>BC<span class="pl-pds">"</span></span>);</td>
+      </tr>
+      <tr>
+        <td id="file-stringutil-java-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-stringutil-java-LC8" class="blob-code blob-code-inner js-file-line">			dsa<span class="pl-k">.</span>initSign(privateKey);</td>
+      </tr>
+      <tr>
+        <td id="file-stringutil-java-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-stringutil-java-LC9" class="blob-code blob-code-inner js-file-line">			<span class="pl-k">byte</span>[] strByte <span class="pl-k">=</span> input<span class="pl-k">.</span>getBytes();</td>
+      </tr>
+      <tr>
+        <td id="file-stringutil-java-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-stringutil-java-LC10" class="blob-code blob-code-inner js-file-line">			dsa<span class="pl-k">.</span>update(strByte);</td>
+      </tr>
+      <tr>
+        <td id="file-stringutil-java-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-stringutil-java-LC11" class="blob-code blob-code-inner js-file-line">			<span class="pl-k">byte</span>[] realSig <span class="pl-k">=</span> dsa<span class="pl-k">.</span>sign();</td>
+      </tr>
+      <tr>
+        <td id="file-stringutil-java-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-stringutil-java-LC12" class="blob-code blob-code-inner js-file-line">			output <span class="pl-k">=</span> realSig;</td>
+      </tr>
+      <tr>
+        <td id="file-stringutil-java-L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="file-stringutil-java-LC13" class="blob-code blob-code-inner js-file-line">		} <span class="pl-k">catch</span> (<span class="pl-smi">Exception</span> e) {</td>
+      </tr>
+      <tr>
+        <td id="file-stringutil-java-L14" class="blob-num js-line-number" data-line-number="14"></td>
+        <td id="file-stringutil-java-LC14" class="blob-code blob-code-inner js-file-line">			<span class="pl-k">throw</span> <span class="pl-k">new</span> <span class="pl-smi">RuntimeException</span>(e);</td>
+      </tr>
+      <tr>
+        <td id="file-stringutil-java-L15" class="blob-num js-line-number" data-line-number="15"></td>
+        <td id="file-stringutil-java-LC15" class="blob-code blob-code-inner js-file-line">		}</td>
+      </tr>
+      <tr>
+        <td id="file-stringutil-java-L16" class="blob-num js-line-number" data-line-number="16"></td>
+        <td id="file-stringutil-java-LC16" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">return</span> output;</td>
+      </tr>
+      <tr>
+        <td id="file-stringutil-java-L17" class="blob-num js-line-number" data-line-number="17"></td>
+        <td id="file-stringutil-java-LC17" class="blob-code blob-code-inner js-file-line">	}</td>
+      </tr>
+      <tr>
+        <td id="file-stringutil-java-L18" class="blob-num js-line-number" data-line-number="18"></td>
+        <td id="file-stringutil-java-LC18" class="blob-code blob-code-inner js-file-line">	</td>
+      </tr>
+      <tr>
+        <td id="file-stringutil-java-L19" class="blob-num js-line-number" data-line-number="19"></td>
+        <td id="file-stringutil-java-LC19" class="blob-code blob-code-inner js-file-line">	<span class="pl-c"><span class="pl-c">//</span>Verifies a String signature </span></td>
+      </tr>
+      <tr>
+        <td id="file-stringutil-java-L20" class="blob-num js-line-number" data-line-number="20"></td>
+        <td id="file-stringutil-java-LC20" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">boolean</span> verifyECDSASig(<span class="pl-smi">PublicKey</span> publicKey, <span class="pl-smi">String</span> data, <span class="pl-k">byte</span>[] signature) {</td>
+      </tr>
+      <tr>
+        <td id="file-stringutil-java-L21" class="blob-num js-line-number" data-line-number="21"></td>
+        <td id="file-stringutil-java-LC21" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">try</span> {</td>
+      </tr>
+      <tr>
+        <td id="file-stringutil-java-L22" class="blob-num js-line-number" data-line-number="22"></td>
+        <td id="file-stringutil-java-LC22" class="blob-code blob-code-inner js-file-line">			<span class="pl-smi">Signature</span> ecdsaVerify <span class="pl-k">=</span> <span class="pl-smi">Signature</span><span class="pl-k">.</span>getInstance(<span class="pl-s"><span class="pl-pds">"</span>ECDSA<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>BC<span class="pl-pds">"</span></span>);</td>
+      </tr>
+      <tr>
+        <td id="file-stringutil-java-L23" class="blob-num js-line-number" data-line-number="23"></td>
+        <td id="file-stringutil-java-LC23" class="blob-code blob-code-inner js-file-line">			ecdsaVerify<span class="pl-k">.</span>initVerify(publicKey);</td>
+      </tr>
+      <tr>
+        <td id="file-stringutil-java-L24" class="blob-num js-line-number" data-line-number="24"></td>
+        <td id="file-stringutil-java-LC24" class="blob-code blob-code-inner js-file-line">			ecdsaVerify<span class="pl-k">.</span>update(data<span class="pl-k">.</span>getBytes());</td>
+      </tr>
+      <tr>
+        <td id="file-stringutil-java-L25" class="blob-num js-line-number" data-line-number="25"></td>
+        <td id="file-stringutil-java-LC25" class="blob-code blob-code-inner js-file-line">			<span class="pl-k">return</span> ecdsaVerify<span class="pl-k">.</span>verify(signature);</td>
+      </tr>
+      <tr>
+        <td id="file-stringutil-java-L26" class="blob-num js-line-number" data-line-number="26"></td>
+        <td id="file-stringutil-java-LC26" class="blob-code blob-code-inner js-file-line">		}<span class="pl-k">catch</span>(<span class="pl-smi">Exception</span> e) {</td>
+      </tr>
+      <tr>
+        <td id="file-stringutil-java-L27" class="blob-num js-line-number" data-line-number="27"></td>
+        <td id="file-stringutil-java-LC27" class="blob-code blob-code-inner js-file-line">			<span class="pl-k">throw</span> <span class="pl-k">new</span> <span class="pl-smi">RuntimeException</span>(e);</td>
+      </tr>
+      <tr>
+        <td id="file-stringutil-java-L28" class="blob-num js-line-number" data-line-number="28"></td>
+        <td id="file-stringutil-java-LC28" class="blob-code blob-code-inner js-file-line">		}</td>
+      </tr>
+      <tr>
+        <td id="file-stringutil-java-L29" class="blob-num js-line-number" data-line-number="29"></td>
+        <td id="file-stringutil-java-LC29" class="blob-code blob-code-inner js-file-line">	}</td>
+      </tr>
+      <tr>
+        <td id="file-stringutil-java-L30" class="blob-num js-line-number" data-line-number="30"></td>
+        <td id="file-stringutil-java-LC30" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-stringutil-java-L31" class="blob-num js-line-number" data-line-number="31"></td>
+        <td id="file-stringutil-java-LC31" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">String</span> getStringFromKey(<span class="pl-smi">Key</span> key) {</td>
+      </tr>
+      <tr>
+        <td id="file-stringutil-java-L32" class="blob-num js-line-number" data-line-number="32"></td>
+        <td id="file-stringutil-java-LC32" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">return</span> <span class="pl-smi">Base64</span><span class="pl-k">.</span>getEncoder()<span class="pl-k">.</span>encodeToString(key<span class="pl-k">.</span>getEncoded());</td>
+      </tr>
+      <tr>
+        <td id="file-stringutil-java-L33" class="blob-num js-line-number" data-line-number="33"></td>
+        <td id="file-stringutil-java-LC33" class="blob-code blob-code-inner js-file-line">	}</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/CryptoKass/97abbf99e5a98000c20d90c6e0c56111/raw/109a4f9654dec61c4ec1ab4a0d8276914af06ab8/StringUtil.Java" style="float:right">view raw</a>
+        <a href="https://gist.github.com/CryptoKass/97abbf99e5a98000c20d90c6e0c56111#file-stringutil-java">StringUtil.Java</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<script>var height = -1; var delayMs = 200;function notifyResize(height) {height = height ? height : document.documentElement.offsetHeight; var resized = false; if (window.donkey && donkey.resize) {donkey.resize(height); resized = true;}if (parent && parent._resizeIframe) {var obj = {iframe: window.frameElement, height: height}; parent._resizeIframe(obj); resized = true;}if (window.location && window.location.hash === "#amp=1" && window.parent && window.parent.postMessage) {window.parent.postMessage({sentinel: "amp", type: "embed-size", height: height}, "*");}if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.resize) {window.webkit.messageHandlers.resize.postMessage(height); resized = true;}return resized;}function maybeResize() {if (document.documentElement.offsetHeight != height && notifyResize()) {height = document.documentElement.offsetHeight;}delayMs = Math.min(delayMs * 2, 1000000); setTimeout(maybeResize, delayMs);}maybeResize();</script></body></html>
