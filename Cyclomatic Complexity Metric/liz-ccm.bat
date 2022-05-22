@@ -1,1 +1,0 @@
-lizard -t 2 -l csharp --html --verbose > ./ccm_outp.html
